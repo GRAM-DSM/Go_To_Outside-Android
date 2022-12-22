@@ -1,4 +1,4 @@
-package com.gram.gotooutside
+package com.gram.presentation
 
 import org.junit.Test
 

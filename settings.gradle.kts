@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Go To Outside Android"
-include(":app")
 include(":domain")
 include(":data")
+include(":presentation")
+include(":presentation")

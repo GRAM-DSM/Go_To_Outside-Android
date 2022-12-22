@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.gram.gotooutside"
-    compileSdk = 33
+    namespace = "com.gram.presentation"
+    compileSdk = 32
 
     defaultConfig {
-        applicationId = "com.gram.gotooutside"
+        applicationId = "com.gram.presentation"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 32
         versionCode = 1
         versionName = "1.0"
 
@@ -18,11 +18,11 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
+                "proguard-rules.pro"
             )
         }
     }

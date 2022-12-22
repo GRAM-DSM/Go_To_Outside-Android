@@ -1,4 +1,4 @@
-package com.gram.gotooutside
+package com.gram.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
