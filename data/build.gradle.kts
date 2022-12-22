@@ -4,27 +4,27 @@ plugins {
 }
 
 android {
-    namespace = AppConfigs.namespace
-    compileSdk = AppConfigs.SDK.compileSdkVersion
+    namespace = AppConfig.Namespace.presentation
+    compileSdk = AppConfig.SDK.compileSdkVersion
 
     defaultConfig {
-        minSdk = AppConfigs.SDK.minSdkVersion
-        targetSdk = AppConfigs.SDK.targetSdkVersion
+        minSdk = AppConfig.SDK.minimumSdkVersion
+        targetSdk = AppConfig.SDK.targetSdkVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = AppConfigs.isMinifyEnabled
+            isMinifyEnabled = AppConfig.isMinifyEnabled
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
             )
         }
     }
     compileOptions {
-        sourceCompatibility = Versions.Java.java_version
-        targetCompatibility = Versions.Java.java_version
+        sourceCompatibility = Version.Java.javaVersion
+        targetCompatibility = Version.Java.javaVersion
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -32,8 +32,6 @@ android {
 }
 
 dependencies {
-
-    implementation(project(Modules.domain))
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.5.1")

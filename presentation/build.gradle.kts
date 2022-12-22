@@ -1,20 +1,18 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
+    id(Plugin.Application.application)
+    id(Plugin.Kotlin.android)
+    id(Plugin.Kotlin.kapt)
 }
 
 android {
 
-    compileSdk = 33
-    namespace = "com.gram.presentation"
+    compileSdk = AppConfig.SDK.compileSdkVersion
+    namespace = AppConfig.Namespace.presentation
 
     defaultConfig {
-        applicationId = "com.gram.presentation"
-        minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AppConfig.applicationId
+        minSdk = AppConfig.SDK.minimumSdkVersion
+        targetSdk = AppConfig.SDK.targetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,11 +26,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        Version.Java.javaVersion.run {
+            sourceCompatibility = this
+            targetCompatibility = this
+        }
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.Kotlin.jvmTarget
     }
 }
 
@@ -40,10 +40,10 @@ dependencies {
 
     implementation(project(Modules.data, Modules.domain))
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(Dependency.Android.core)
+    implementation(Dependency.Android.appCompat)
+    implementation(Dependency.Material.material)
+    implementation(Dependency.UI.constraintLayout)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")

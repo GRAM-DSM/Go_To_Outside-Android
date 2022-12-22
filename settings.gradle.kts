@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         google()
@@ -16,5 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "Go To Outside Android"
 include(":domain")
 include(":data")
-include(":presentation")
 include(":presentation")
