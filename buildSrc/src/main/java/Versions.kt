@@ -2,12 +2,16 @@ import org.gradle.api.JavaVersion
 
 object Versions {
 
+    object UI {
+        const val material_version = "1.7.0"
+    }
+
     object Java {
         val java_version = JavaVersion.VERSION_1_8
     }
 
     object Gradle {
-      //  const val android_version =
+        //  const val android_version =
     }
 
     object Android {
