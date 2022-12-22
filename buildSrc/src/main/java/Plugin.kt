@@ -5,14 +5,14 @@
 object Plugin {
 
     /**
-     * An object class sets of
+     * An object class sets of application plugins.
      */
     object Application {
         const val application = "com.android.application"
     }
 
     /**
-     * An object class sets of kotlin plugins
+     * An object class sets of kotlin plugins.
      */
     object Kotlin {
         const val android = "kotlin-android"
