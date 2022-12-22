@@ -12,7 +12,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Go To Outside Android"
-include ':app'
-include ':domain'
-include ':data'
+include(":app")
+include(":domain")
+include(":data")
