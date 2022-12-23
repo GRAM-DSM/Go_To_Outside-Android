@@ -38,7 +38,7 @@ android {
 
 dependencies {
 
-    implementation(project(Modules.data, Modules.domain))
+    implementation(project(Module.data, Module.domain))
 
     implementation(Dependency.Android.core)
     implementation(Dependency.Android.appCompat)

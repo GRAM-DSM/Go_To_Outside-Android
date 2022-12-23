@@ -24,13 +24,14 @@ object Version {
      * An object class sets of Gradle dependencies version.
      */
     object Gradle {
-        //  const val android_version =
+        const val gradleVersion = "7.3.1"
     }
 
     /**
      * An object class sets of Android dependencies version.
      */
     object Android {
+        const val application = "7.3.1"
         const val appcompatVersion = "1.5.1"
         const val coreVersion = "1.9.0"
     }
@@ -48,5 +49,12 @@ object Version {
     object Kotlin {
         const val kotlinVersion = "1.7.22"
         const val coroutinesVersion = "1.6.4"
+    }
+
+    /**
+     * An object class sets of Hilt dependencies version.
+     */
+    object Hilt {
+        const val hiltVersion = "2.44.2"
     }
 }
