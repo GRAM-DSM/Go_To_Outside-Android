@@ -11,6 +11,15 @@ object AppConfig {
     const val applicationId = "com.gram.gotooutside"
 
     /**
+     * An object class sets of module declarations.
+     */
+    object Module {
+        const val data = ":data"
+        const val domain = ":domain"
+        const val presentation = ":presentation"
+    }
+
+    /**
      * An object class sets of namespaces declarations.
      * Every declarations need to be edited for the project path.
      */
