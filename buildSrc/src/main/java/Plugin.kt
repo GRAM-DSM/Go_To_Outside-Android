@@ -12,10 +12,17 @@ object Plugin {
     }
 
     /**
+     * An object class sets of application plugins.
+     */
+    object Android {
+        const val library = "com.android.library"
+    }
+
+    /**
      * An object class sets of kotlin plugins.
      */
     object Kotlin {
-        const val android = "kotlin-android"
+        const val androidKotlin = "kotlin-android"
         const val kapt = "kotlin-kapt"
     }
 }

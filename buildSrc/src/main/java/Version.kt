@@ -47,6 +47,6 @@ object Version {
      */
     object Kotlin {
         const val kotlinVersion = "1.7.22"
-        const val coroutinesVersion = "1.7.22"
+        const val coroutinesVersion = "1.6.4"
     }
 }

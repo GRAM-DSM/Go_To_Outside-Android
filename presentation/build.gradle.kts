@@ -1,6 +1,6 @@
 plugins {
     id(Plugin.Application.application)
-    id(Plugin.Kotlin.android)
+    id(Plugin.Kotlin.androidKotlin)
     id(Plugin.Kotlin.kapt)
 }
 
