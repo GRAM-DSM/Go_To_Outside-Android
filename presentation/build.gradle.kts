@@ -39,52 +39,36 @@ android {
 dependencies {
 
     with(AppConfig.Module) {
-        implementation(
-            project(
-                data,
-                domain,
-            )
-        )
+        implementation(project(data))
+        implementation(project(domain))
     }
 
     with(Dependency.Android) {
-        implementation(
-            core,
-            appCompat,
-        )
+        implementation(core)
+        implementation(appCompat)
     }
 
     with(Dependency.UI) {
-        implementation(
-            constraintLayout,
-            material,
-            activity,
-            fragment,
-        )
+        implementation(constraintLayout)
+        implementation(material)
+        implementation(activity)
+        implementation(fragment)
     }
 
     with(Dependency.DI) {
-        implementation(
-            hiltAndroid,
-            hiltAndroidCompiler,
-        )
+        implementation(hiltAndroid)
+        implementation(hiltAndroidCompiler)
     }
 
     with(Dependency.Network) {
-        implementation(
-            okHttp,
-            okHttpLogginIntercepter,
-        )
+        implementation(okHttp)
+        implementation(okHttpLogginIntercepter)
     }
 
     with(Dependency.Test) {
-        testImplementation(
-            jUnit,
-            mockito,
-        )
-        androidTestImplementation(
-            androidJUnit,
-            espresso,
-        )
+        testImplementation(jUnit)
+
+        androidTestImplementation(androidJUnit)
+        androidTestImplementation(espresso)
     }
 }

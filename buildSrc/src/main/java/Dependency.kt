@@ -70,7 +70,6 @@ object Dependency {
      */
     object Test {
         const val jUnit = "junit:junit:${Version.Test.jUnitVersion}"
-        const val mockito = "org.mockito:mockito-core::${Version.Test.mockitoVersion}"
         const val androidJUnit = "androidx.test.ext:junit:${Version.Test.androidJUnitVersion}"
         const val espresso = "androidx.test.espresso:espresso-core:${Version.Test.espressoVersion}"
     }
