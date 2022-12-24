@@ -14,14 +14,15 @@ android {
         minSdk = AppConfig.SDK.minimumSdkVersion
         targetSdk = AppConfig.SDK.targetSdkVersion
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AppConfig.testInstrumentationRunner
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = AppConfig.isMinifyEnabled
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
+                getDefaultProguardFile(AppConfig.Proguard.defaultProguardFileName),
+                AppConfig.Proguard.proguardRules,
             )
         }
     }

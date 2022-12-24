@@ -47,6 +47,19 @@ object AppConfig {
     const val isMinifyEnabled = false
 
     /**
+     * Configuration expresses TestInstrumentationRunner.
+     */
+    const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    /**
+     * An object class sets of Proguard rules.
+     */
+    object Proguard {
+        const val defaultProguardFileName = "proguard-android-optimize.txt"
+        const val proguardRules = "proguard-rules.pro"
+    }
+
+    /**
      * An object class sets of project SDK versions declarations.
      */
     object SDK {
@@ -56,7 +69,7 @@ object AppConfig {
     }
 
     /**
-     * An object class sets of Kotlin options
+     * An object class sets of Kotlin options.
      */
     object Kotlin {
         const val jvmTarget = "1.8"
