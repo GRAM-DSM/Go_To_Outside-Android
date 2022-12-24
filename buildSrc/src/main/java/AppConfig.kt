@@ -5,6 +5,12 @@
 object AppConfig {
 
     /**
+     * An application name
+     * Needs to be edited for the application.
+     */
+    const val applicationName = "Go To Outside"
+
+    /**
      * An application id.
      * Needs to be edited for the application.
      */
