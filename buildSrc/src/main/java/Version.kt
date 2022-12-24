@@ -11,6 +11,9 @@ object Version {
      */
     object UI {
         const val constraintLayoutVersion = "2.1.4"
+        const val materialVersion = "1.7.0"
+        const val activityVersion = "1.6.1"
+        const val fragmentVersion = "1.5.5"
     }
 
     /**
@@ -37,13 +40,6 @@ object Version {
     }
 
     /**
-     * An object class sets of Material dependency versions.
-     */
-    object Material {
-        const val materialVersion = "1.7.0"
-    }
-
-    /**
      * An object class sets of Kotlin dependency versions.
      */
     object Kotlin {
@@ -52,10 +48,11 @@ object Version {
     }
 
     /**
-     * An object class sets of Hilt dependency versions.
+     * An object class sets of Dependency Injection Library dependency versions.
      */
-    object Hilt {
-        const val hiltVersion = "2.44.2"
+    object DI {
+        const val hiltAndroid = "2.44.2"
+        const val hiltCompiler = "2.44.2"
     }
 
     /**
@@ -65,5 +62,22 @@ object Version {
         const val jUnitVersion = "4.13.2"
         const val androidJUnitVersion = "1.1.4"
         const val espressoVersion = "3.5.0"
+        const val mockitoVersion = "4.10.0"
+    }
+
+    /**
+     * An object class sets of Network dependency versions.
+     */
+    object Network {
+        const val retrofitVersion = "2.9.0"
+        const val okHttpVersion = "4.10.0"
+        const val socketIoVersion = "2.1.0"
+    }
+
+    /**
+     * An object class sets of Local Database dependency versions.
+     */
+    object Local {
+        const val roomVersion = "2.4.3"
     }
 }
