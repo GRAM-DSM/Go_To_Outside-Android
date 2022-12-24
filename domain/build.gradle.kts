@@ -1,43 +1,50 @@
 plugins {
-    id("com.android.library")
-    kotlin("android")
+    id(Dependency.Plugin.Android.library)
+    id(Dependency.Plugin.Kotlin.androidKotlin)
+    id(Dependency.Plugin.Kotlin.kapt)
 }
 
 android {
-    namespace = "com.gram.domain"
-    compileSdk = 33
+    namespace = AppConfig.Namespace.domain
+    compileSdk = AppConfig.SDK.compileSdkVersion
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 33
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        minSdk = AppConfig.SDK.minimumSdkVersion
+        targetSdk = AppConfig.SDK.targetSdkVersion
+        testInstrumentationRunner = AppConfig.testInstrumentationRunner
+        consumerProguardFiles(AppConfig.Proguard.consumerRules)
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = AppConfig.isMinifyEnabled
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
+                getDefaultProguardFile(AppConfig.Proguard.defaultProguardFileName),
+                AppConfig.Proguard.proguardRules,
             )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        with(Version.Java.javaVersion) {
+            sourceCompatibility = this
+            targetCompatibility = this
+        }
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.Kotlin.jvmTarget
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    with(Dependency.Android) {
+        implementation(core)
+        implementation(appCompat)
+    }
+
+    with(Dependency.Test) {
+        implementation(jUnit)
+        androidTestImplementation(androidJUnit)
+        androidTestImplementation(espresso)
+    }
 }

@@ -5,15 +5,13 @@ plugins {
 }
 
 android {
-
-    compileSdk = AppConfig.SDK.compileSdkVersion
     namespace = AppConfig.Namespace.presentation
+    compileSdk = AppConfig.SDK.compileSdkVersion
 
     defaultConfig {
         applicationId = AppConfig.applicationId
         minSdk = AppConfig.SDK.minimumSdkVersion
         targetSdk = AppConfig.SDK.targetSdkVersion
-
         testInstrumentationRunner = AppConfig.testInstrumentationRunner
     }
 
@@ -56,19 +54,25 @@ dependencies {
         implementation(fragment)
     }
 
+    with(Dependency.Local) {
+        implementation(room)
+        kapt(roomCompiler)
+    }
+
     with(Dependency.DI) {
         implementation(hiltAndroid)
-        implementation(hiltAndroidCompiler)
+        kapt(hiltAndroidCompiler)
     }
 
     with(Dependency.Network) {
         implementation(okHttp)
         implementation(okHttpLogginIntercepter)
+        implementation(retrofit)
+        implementation(retrofitGsonConverter)
     }
 
     with(Dependency.Test) {
         testImplementation(jUnit)
-
         androidTestImplementation(androidJUnit)
         androidTestImplementation(espresso)
     }

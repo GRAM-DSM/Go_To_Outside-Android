@@ -57,6 +57,7 @@ object AppConfig {
     object Proguard {
         const val defaultProguardFileName = "proguard-android-optimize.txt"
         const val proguardRules = "proguard-rules.pro"
+        const val consumerRules = "consumer-rules.pro"
     }
 
     /**

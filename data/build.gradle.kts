@@ -1,6 +1,7 @@
 plugins {
     id(Dependency.Plugin.Android.library)
     id(Dependency.Plugin.Kotlin.androidKotlin)
+    id(Dependency.Plugin.Kotlin.kapt)
 }
 
 android {
@@ -10,33 +11,53 @@ android {
     defaultConfig {
         minSdk = AppConfig.SDK.minimumSdkVersion
         targetSdk = AppConfig.SDK.targetSdkVersion
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = AppConfig.testInstrumentationRunner
+        consumerProguardFiles(AppConfig.Proguard.consumerRules)
     }
 
     buildTypes {
         release {
             isMinifyEnabled = AppConfig.isMinifyEnabled
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
+                getDefaultProguardFile(AppConfig.Proguard.defaultProguardFileName),
+                AppConfig.Proguard.proguardRules,
             )
         }
     }
     compileOptions {
-        sourceCompatibility = Version.Java.javaVersion
-        targetCompatibility = Version.Java.javaVersion
+        Version.Java.javaVersion.run {
+            sourceCompatibility = this
+            targetCompatibility = this
+        }
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.Kotlin.jvmTarget
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    with(AppConfig.Module) {
+        implementation(
+            project(domain),
+        )
+    }
+
+    with(Dependency.DI) {
+        implementation(hiltAndroid)
+        kapt(hiltAndroidCompiler)
+    }
+
+    with(Dependency.Network) {
+        implementation(okHttp)
+        implementation(okHttpLogginIntercepter)
+        implementation(retrofit)
+        implementation(retrofitGsonConverter)
+    }
+
+    with(Dependency.Test) {
+        testImplementation(jUnit)
+        androidTestImplementation(androidJUnit)
+        androidTestImplementation(espresso)
+    }
 }
