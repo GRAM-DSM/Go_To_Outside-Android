@@ -4,7 +4,7 @@ import org.gradle.api.JavaVersion
  * @author junsuPark
  * An object class sets of dependency versions.
  */
-object Version {
+object Versions {
 
     /**
      * An object class sets of UI dependency versions.

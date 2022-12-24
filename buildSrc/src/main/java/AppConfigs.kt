@@ -2,7 +2,7 @@
  * @author junsuPark
  * An object class sets of app configurations.
  */
-object AppConfig {
+object AppConfigs {
 
     /**
      * An application name

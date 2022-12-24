@@ -1,77 +1,77 @@
 plugins {
-    id(Dependency.Plugin.Application.application)
-    id(Dependency.Plugin.Kotlin.androidKotlin)
-    id(Dependency.Plugin.Kotlin.kapt)
+    id(Dependencies.Plugin.Application.application)
+    id(Dependencies.Plugin.Kotlin.androidKotlin)
+    id(Dependencies.Plugin.Kotlin.kapt)
 }
 
 android {
-    namespace = AppConfig.Namespace.presentation
-    compileSdk = AppConfig.SDK.compileSdkVersion
+    namespace = AppConfigs.Namespace.presentation
+    compileSdk = AppConfigs.SDK.compileSdkVersion
 
     defaultConfig {
-        applicationId = AppConfig.applicationId
-        minSdk = AppConfig.SDK.minimumSdkVersion
-        targetSdk = AppConfig.SDK.targetSdkVersion
-        testInstrumentationRunner = AppConfig.testInstrumentationRunner
+        applicationId = AppConfigs.applicationId
+        minSdk = AppConfigs.SDK.minimumSdkVersion
+        targetSdk = AppConfigs.SDK.targetSdkVersion
+        testInstrumentationRunner = AppConfigs.testInstrumentationRunner
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = AppConfig.isMinifyEnabled
+            isMinifyEnabled = AppConfigs.isMinifyEnabled
             proguardFiles(
-                getDefaultProguardFile(AppConfig.Proguard.defaultProguardFileName),
-                AppConfig.Proguard.proguardRules,
+                getDefaultProguardFile(AppConfigs.Proguard.defaultProguardFileName),
+                AppConfigs.Proguard.proguardRules,
             )
         }
     }
     compileOptions {
-        Version.Java.javaVersion.run {
+        Versions.Java.javaVersion.run {
             sourceCompatibility = this
             targetCompatibility = this
         }
     }
     kotlinOptions {
-        jvmTarget = AppConfig.Kotlin.jvmTarget
+        jvmTarget = AppConfigs.Kotlin.jvmTarget
     }
 }
 
 dependencies {
 
-    with(AppConfig.Module) {
+    with(AppConfigs.Module) {
         implementation(project(data))
         implementation(project(domain))
     }
 
-    with(Dependency.Android) {
+    with(Dependencies.Android) {
         implementation(core)
         implementation(appCompat)
     }
 
-    with(Dependency.UI) {
+    with(Dependencies.UI) {
         implementation(constraintLayout)
         implementation(material)
         implementation(activity)
         implementation(fragment)
     }
 
-    with(Dependency.Local) {
+    with(Dependencies.Local) {
         implementation(room)
         kapt(roomCompiler)
     }
 
-    with(Dependency.DI) {
+    with(Dependencies.DI) {
         implementation(hiltAndroid)
         kapt(hiltAndroidCompiler)
     }
 
-    with(Dependency.Network) {
+    with(Dependencies.Network) {
         implementation(okHttp)
         implementation(okHttpLogginIntercepter)
         implementation(retrofit)
         implementation(retrofitGsonConverter)
     }
 
-    with(Dependency.Test) {
+    with(Dependencies.Test) {
         testImplementation(jUnit)
         androidTestImplementation(androidJUnit)
         androidTestImplementation(espresso)

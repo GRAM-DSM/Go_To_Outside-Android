@@ -1,48 +1,48 @@
 plugins {
-    id(Dependency.Plugin.Android.library)
-    id(Dependency.Plugin.Kotlin.androidKotlin)
-    id(Dependency.Plugin.Kotlin.kapt)
+    id(Dependencies.Plugin.Android.library)
+    id(Dependencies.Plugin.Kotlin.androidKotlin)
+    id(Dependencies.Plugin.Kotlin.kapt)
 }
 
 android {
-    namespace = AppConfig.Namespace.domain
-    compileSdk = AppConfig.SDK.compileSdkVersion
+    namespace = AppConfigs.Namespace.domain
+    compileSdk = AppConfigs.SDK.compileSdkVersion
 
     defaultConfig {
-        minSdk = AppConfig.SDK.minimumSdkVersion
-        targetSdk = AppConfig.SDK.targetSdkVersion
-        testInstrumentationRunner = AppConfig.testInstrumentationRunner
-        consumerProguardFiles(AppConfig.Proguard.consumerRules)
+        minSdk = AppConfigs.SDK.minimumSdkVersion
+        targetSdk = AppConfigs.SDK.targetSdkVersion
+        testInstrumentationRunner = AppConfigs.testInstrumentationRunner
+        consumerProguardFiles(AppConfigs.Proguard.consumerRules)
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = AppConfig.isMinifyEnabled
+            isMinifyEnabled = AppConfigs.isMinifyEnabled
             proguardFiles(
-                getDefaultProguardFile(AppConfig.Proguard.defaultProguardFileName),
-                AppConfig.Proguard.proguardRules,
+                getDefaultProguardFile(AppConfigs.Proguard.defaultProguardFileName),
+                AppConfigs.Proguard.proguardRules,
             )
         }
     }
     compileOptions {
-        with(Version.Java.javaVersion) {
+        with(Versions.Java.javaVersion) {
             sourceCompatibility = this
             targetCompatibility = this
         }
     }
     kotlinOptions {
-        jvmTarget = AppConfig.Kotlin.jvmTarget
+        jvmTarget = AppConfigs.Kotlin.jvmTarget
     }
 }
 
 dependencies {
 
-    with(Dependency.Android) {
+    with(Dependencies.Android) {
         implementation(core)
         implementation(appCompat)
     }
 
-    with(Dependency.Test) {
+    with(Dependencies.Test) {
         implementation(jUnit)
         androidTestImplementation(androidJUnit)
         androidTestImplementation(espresso)
