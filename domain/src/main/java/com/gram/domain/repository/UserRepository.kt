@@ -2,9 +2,9 @@ package com.gram.domain.repository
 
 interface UserRepository {
 
-    fun registerAsStudent()
+    suspend fun registerAsStudent()
 
-    fun registerAsTeacher()
+    suspend fun registerAsTeacher()
 
     fun login()
 }

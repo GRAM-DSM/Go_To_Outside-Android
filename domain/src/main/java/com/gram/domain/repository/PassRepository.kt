@@ -2,11 +2,11 @@ package com.gram.domain.repository
 
 interface PassRepository {
 
-    fun applyPass()
+    suspend fun applyPass()
 
-    fun referPass()
+    suspend fun referPass()
 
-    fun referPassesList()
+    suspend fun referPassesList()
 
-    fun permitPass()
+    suspend fun permitPass()
 }
