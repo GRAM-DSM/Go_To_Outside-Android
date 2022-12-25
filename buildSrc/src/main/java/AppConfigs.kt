@@ -71,8 +71,8 @@ object AppConfigs {
      */
     object SDK {
         const val minimumSdkVersion = 26
-        const val targetSdkVersion = 32
-        const val compileSdkVersion = 32
+        const val targetSdkVersion = 33
+        const val compileSdkVersion = 33
     }
 
     /**
