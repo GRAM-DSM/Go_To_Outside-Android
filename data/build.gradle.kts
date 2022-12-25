@@ -49,6 +49,7 @@ dependencies {
     with(Dependencies.DI) {
         implementation(hiltAndroid)
         kapt(hiltAndroidCompiler)
+        implementation(javaInject)
     }
 
     with(Dependencies.Network) {

@@ -81,6 +81,8 @@ object Dependencies {
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.DI.hiltAndroid}"
         const val hiltAndroidCompiler =
             "com.google.dagger:hilt-android-compiler:${Versions.DI.hiltAndroid}"
+        const val javaInject =
+            "javax.inject:javax.inject:${Versions.DI.javaInject}"
     }
 
     /**
@@ -89,7 +91,7 @@ object Dependencies {
     object Network {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.Network.retrofitVersion}"
         const val retrofitGsonConverter =
-            "com.squareup.retrofit2:retrofit:${Versions.Network.retrofitVersion}"
+            "com.squareup.retrofit2:converter-gson:${Versions.Network.retrofitVersion}"
         const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.Network.okHttpVersion}"
         const val okHttpLogginIntercepter =
             "com.squareup.okhttp3:logging-interceptor:${Versions.Network.okHttpVersion}"
