@@ -1,6 +1,7 @@
 plugins {
     id(Dependencies.Plugin.Application.application)
     id(Dependencies.Plugin.Kotlin.androidKotlin)
+    id(Dependencies.Plugin.DI.hilt)
     id(Dependencies.Plugin.Kotlin.kapt)
 }
 
@@ -33,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = AppConfigs.Kotlin.jvmTarget
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -64,6 +68,8 @@ dependencies {
         kapt(hiltAndroidCompiler)
     }
 
+    kapt("androidx.databinding:databinding-compiler:7.3.1")
+
     with(Dependencies.Network) {
         implementation(okHttp)
         implementation(okHttpLogginIntercepter)
@@ -76,4 +82,8 @@ dependencies {
         androidTestImplementation(androidJUnit)
         androidTestImplementation(espresso)
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }

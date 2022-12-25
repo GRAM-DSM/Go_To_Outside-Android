@@ -52,7 +52,7 @@ object Versions {
      */
     object DI {
         const val hiltAndroid = "2.44.2"
-        const val hiltCompiler = "2.44.2"
+        const val javaInject = "1"
     }
 
     /**

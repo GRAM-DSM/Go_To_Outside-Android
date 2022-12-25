@@ -1,6 +1,7 @@
 plugins {
     id(Dependencies.Plugin.Android.library)
     id(Dependencies.Plugin.Kotlin.androidKotlin)
+    id(Dependencies.Plugin.DI.hilt)
     id(Dependencies.Plugin.Kotlin.kapt)
 }
 
@@ -33,9 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = AppConfigs.Kotlin.jvmTarget
     }
-    buildFeatures {
-        dataBinding = true
-    }
 }
 
 dependencies {
@@ -49,6 +47,7 @@ dependencies {
     with(Dependencies.DI) {
         implementation(hiltAndroid)
         kapt(hiltAndroidCompiler)
+        implementation(javaInject)
     }
 
     with(Dependencies.Network) {

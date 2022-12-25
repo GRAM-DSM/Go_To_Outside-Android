@@ -1,10 +1,14 @@
 package com.gram.domain.repository
 
+import com.gram.domain.parameter.user.LoginParameter
+
 interface UserRepository {
 
-    fun registerAsStudent()
+    suspend fun registerAsStudent()
 
-    fun registerAsTeacher()
+    suspend fun registerAsTeacher()
 
-    fun login()
+    fun login(
+        loginParameter: LoginParameter,
+    )
 }
