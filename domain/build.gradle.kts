@@ -42,6 +42,10 @@ dependencies {
         implementation(appCompat)
     }
 
+    with(Dependencies.DI) {
+        implementation(javaInject)
+    }
+
     with(Dependencies.Test) {
         implementation(jUnit)
         androidTestImplementation(androidJUnit)
