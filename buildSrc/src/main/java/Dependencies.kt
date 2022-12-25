@@ -41,6 +41,13 @@ object Dependencies {
             const val hilt =
                 "com.google.dagger:hilt-android-gradle-plugin:${Versions.DI.hiltAndroid}"
         }
+
+        /**
+         * An object class sets of DI dependency paths.
+         */
+        object DI {
+            const val hilt = "dagger.hilt.android.plugin"
+        }
     }
 
     /**
@@ -49,12 +56,9 @@ object Dependencies {
     object UI {
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.UI.constraintLayoutVersion}"
-        const val material =
-            "com.google.android.material:material:${Versions.UI.materialVersion}"
-        const val activity =
-            "androidx.activity:activity-ktx:${Versions.UI.activityVersion}"
-        const val fragment =
-            "androidx.fragment:fragment-ktx:${Versions.UI.fragmentVersion}"
+        const val material = "com.google.android.material:material:${Versions.UI.materialVersion}"
+        const val activity = "androidx.activity:activity-ktx:${Versions.UI.activityVersion}"
+        const val fragment = "androidx.fragment:fragment-ktx:${Versions.UI.fragmentVersion}"
     }
 
     /**
@@ -81,8 +85,7 @@ object Dependencies {
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.DI.hiltAndroid}"
         const val hiltAndroidCompiler =
             "com.google.dagger:hilt-android-compiler:${Versions.DI.hiltAndroid}"
-        const val javaInject =
-            "javax.inject:javax.inject:${Versions.DI.javaInject}"
+        const val javaInject = "javax.inject:javax.inject:${Versions.DI.javaInject}"
     }
 
     /**
