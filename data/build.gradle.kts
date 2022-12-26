@@ -1,8 +1,8 @@
 plugins {
     id(Dependencies.Plugin.Android.library)
     id(Dependencies.Plugin.Kotlin.androidKotlin)
-    id(Dependencies.Plugin.DI.hilt)
     id(Dependencies.Plugin.Kotlin.kapt)
+    id(Dependencies.Plugin.DI.hilt)
 }
 
 android {
