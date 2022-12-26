@@ -8,7 +8,7 @@ interface UserRepository {
 
     suspend fun registerAsTeacher()
 
-    fun login(
+    suspend fun login(
         loginParameter: LoginParameter,
     )
 }
