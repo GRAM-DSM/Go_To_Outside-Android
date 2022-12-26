@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object NetworkModules {
 
     // TODO remove BASE_URL
-    private val BASE_URL = "http://15.165.173.216"
+    private const val BASE_URL = "http://15.165.173.216:8080"
 
 /*    @Provides
     @Singleton
