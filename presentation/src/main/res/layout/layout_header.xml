@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_header_primary"
+            style="@style/TextViewHeaderPrimary"
+            android:text="Primary" />
+
+        <TextView
+            android:id="@+id/tv_header_secondary"
+            style="@style/TextViewHeaderSecondary"
+            android:text="Secondary" />
+    </LinearLayout>
+</layout>
