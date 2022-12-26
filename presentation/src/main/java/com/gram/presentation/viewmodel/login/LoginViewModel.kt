@@ -1,8 +1,11 @@
 package com.gram.presentation.viewmodel.login
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gram.domain.entity.user.LoginEntity
 import com.gram.domain.exception.CommonException
 import com.gram.domain.exception.CommonException.*
 import com.gram.domain.parameter.user.LoginParameter
@@ -22,7 +25,40 @@ class LoginViewModel @Inject constructor(
     private val _eventFlow = MutableStateFlow<Event>(Event.Unauthorized)
     val eventFlow: StateFlow<Event> = _eventFlow
 
-    fun login(
+    private val _loginEntity = MutableLiveData<LoginEntity>()
+    val loginEntity: LiveData<LoginEntity>
+        get() = _loginEntity
+
+    // Temporary login Function
+    internal fun login(
+        accountId: String,
+        password: String,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            kotlin.runCatching {
+                loginUseCase.invoke(
+                    LoginParameter(
+                        accountId = accountId,
+                        password = password,
+                    )
+                )
+            }.onSuccess {
+                _loginEntity.postValue(it)
+                Log.e(
+                    "Login", """
+                    access_token = ${it.access_token}
+                    refresh_token = ${it.refresh_token}
+                    authority = ${it.authority}
+                """.trimIndent()
+                )
+            }.onFailure {
+                Log.e("Login", "login: failure")
+            }
+        }
+    }
+
+
+    /* fun login(
         accountId: String,
         password: String,
     ) {
@@ -40,14 +76,14 @@ class LoginViewModel @Inject constructor(
                     Event.LoginSuccess,
                 )
                 Log.e("Login", "login success")
-            }.onFailure {/*
+            }.onFailure {*//*
                 handleException(
                     it as CommonException,
-                )*/
+                )*//*
                 Log.e("Login", "login failure")
             }
         }
-    }
+    }*/
 
     private fun emitEvent(event: Event) {
         viewModelScope.launch(Dispatchers.Default) {
