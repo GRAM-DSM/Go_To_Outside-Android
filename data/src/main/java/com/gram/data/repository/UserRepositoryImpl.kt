@@ -22,6 +22,9 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun login(loginParameter: LoginParameter): LoginEntity {
+    override suspend fun login(
+        loginParameter: LoginParameter,
+    ): LoginEntity{
         return userDataSource.login(
             LoginRequest(
                 loginParameter.accountId,
