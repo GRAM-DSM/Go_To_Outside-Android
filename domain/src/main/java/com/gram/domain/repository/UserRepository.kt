@@ -1,5 +1,6 @@
 package com.gram.domain.repository
 
+import com.gram.domain.entity.user.LoginEntity
 import com.gram.domain.parameter.user.LoginParameter
 
 interface UserRepository {
@@ -10,5 +11,5 @@ interface UserRepository {
 
     suspend fun login(
         loginParameter: LoginParameter,
-    )
+    ): LoginEntity
 }
