@@ -1,5 +1,6 @@
 package com.gram.presentation.viewmodel.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gram.domain.exception.CommonException
@@ -27,6 +28,7 @@ class LoginViewModel @Inject constructor(
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
+                Log.e("Login", "login: ")
                 loginUseCase.invoke(
                     LoginParameter(
                         accountId,
@@ -37,10 +39,12 @@ class LoginViewModel @Inject constructor(
                 emitEvent(
                     Event.LoginSuccess,
                 )
-            }.onFailure {
+                Log.e("Login", "login success")
+            }.onFailure {/*
                 handleException(
                     it as CommonException,
-                )
+                )*/
+                Log.e("Login", "login failure")
             }
         }
     }
@@ -64,6 +68,9 @@ class LoginViewModel @Inject constructor(
                 is ForbiddenException -> Event.Forbidden
                 is NetworkConnectionException -> Event.NoNetworkConnection
                 is TimeoutException -> Event.Timeout
+                is ConflictException -> Event.Conflict
+                is ServerException -> Event.Server
+                is UnknownException -> Event.Unknown
             }
         )
     }
@@ -76,5 +83,8 @@ class LoginViewModel @Inject constructor(
         object Forbidden : Event()
         object NoNetworkConnection : Event()
         object Timeout : Event()
+        object Conflict : Event()
+        object Server : Event()
+        object Unknown : Event()
     }
 }
