@@ -1,7 +1,7 @@
 package com.gram.presentation.di
 
-import com.gram.data.remote.datasource.UserDataSource
-import com.gram.data.remote.datasource.UserDataSourceImpl
+import com.gram.data.remote.datasource.user.UserDataSource
+import com.gram.data.remote.datasource.user.UserDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RemoteDataSource {
+abstract class DataSourceModules {
 
     @Singleton
     @Binds
@@ -18,3 +18,4 @@ abstract class RemoteDataSource {
         userDataSourceImpl: UserDataSourceImpl,
     ): UserDataSource
 }
+
