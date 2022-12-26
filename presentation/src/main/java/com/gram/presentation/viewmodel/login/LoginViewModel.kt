@@ -38,19 +38,10 @@ class LoginViewModel @Inject constructor(
             kotlin.runCatching {
                 loginUseCase.invoke(
                     LoginParameter(
-                        accountId = accountId,
-                        password = password,
                     )
                 )
             }.onSuccess {
                 _loginEntity.postValue(it)
-                Log.e(
-                    "Login", """
-                    access_token = ${it.access_token}
-                    refresh_token = ${it.refresh_token}
-                    authority = ${it.authority}
-                """.trimIndent()
-                )
             }.onFailure {
                 Log.e("Login", "login: failure")
             }
