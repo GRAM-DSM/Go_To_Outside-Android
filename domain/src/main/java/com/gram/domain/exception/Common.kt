@@ -13,4 +13,10 @@ sealed class CommonException : RuntimeException() {
     class NetworkConnectionException : CommonException()
 
     class TimeoutException : CommonException()
+
+    class ConflictException : CommonException()
+
+    class ServerException : CommonException()
+
+    class UnknownException: CommonException()
 }
