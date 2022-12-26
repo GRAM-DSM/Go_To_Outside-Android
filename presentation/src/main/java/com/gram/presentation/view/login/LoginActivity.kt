@@ -24,29 +24,20 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycleScope.launch(Dispatchers.Default) {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.eventFlow.collect { event ->
-                    handleEvent(
-                        event,
-                    )
-                }
-            }
-        }
+        observeEvents()
     }
 
-    private fun handleEvent(event: LoginViewModel.Event) {
-        when (event) {
-            //LoginViewModel.Event.BadRequest -> TODO()
-            //LoginViewModel.Event.Forbidden -> TODO()
-            LoginViewModel.Event.LoginSuccess -> Log.e("HANDLE_EVENT", "SUCCESS")
-            LoginViewModel.Event.NoNetworkConnection -> Log.e("NO_CONNECTION", "handleEvent: ")
-//            LoginViewModel.Event.Timeout -> TODO()
-/*            LoginViewModel.Event.Unauthorized -> TODO()
-            LoginViewModel.Event.UserNotFound -> */
-            else -> {
-
-            }
+    private fun observeEvents() {
+        viewModel.loginEntity.observe(
+            this,
+        ) {
+            Log.e(
+                "Login", """
+                    access_token = ${it.access_token}
+                    refresh_token = ${it.refresh_token}
+                    authority = ${it.authority}
+                """.trimIndent()
+            )
         }
     }
 
