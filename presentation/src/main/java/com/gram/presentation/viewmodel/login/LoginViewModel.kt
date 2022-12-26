@@ -38,6 +38,8 @@ class LoginViewModel @Inject constructor(
             kotlin.runCatching {
                 loginUseCase.invoke(
                     LoginParameter(
+                        accountId,
+                        password,
                     )
                 )
             }.onSuccess {

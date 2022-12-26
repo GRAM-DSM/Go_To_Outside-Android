@@ -21,7 +21,6 @@ class UserRepositoryImpl @Inject constructor(
         //TODO("Not yet implemented")
     }
 
-    override suspend fun login(loginParameter: LoginParameter): LoginEntity {
     override suspend fun login(
         loginParameter: LoginParameter,
     ): LoginEntity{
