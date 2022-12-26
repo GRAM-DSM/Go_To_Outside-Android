@@ -24,7 +24,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         lifecycleScope.launch(Dispatchers.Default) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.eventFlow.collect { event ->
@@ -41,7 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
             //LoginViewModel.Event.BadRequest -> TODO()
             //LoginViewModel.Event.Forbidden -> TODO()
             LoginViewModel.Event.LoginSuccess -> Log.e("HANDLE_EVENT", "SUCCESS")
-            LoginViewModel.Event.NoNetworkConnection -> Log.e("NO_CONNECTION", "handleEvent: ", )
+            LoginViewModel.Event.NoNetworkConnection -> Log.e("NO_CONNECTION", "handleEvent: ")
 //            LoginViewModel.Event.Timeout -> TODO()
 /*            LoginViewModel.Event.Unauthorized -> TODO()
             LoginViewModel.Event.UserNotFound -> */
@@ -52,6 +51,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     }
 
     override fun initView() {
-
+        with(binding) {
+            btnLoginNext.setOnClickListener {
+                val id = includedLoginLabel.etLabelLoginId.text.toString()
+                val password = includedLoginLabel.etLabelLoginPassword.text.toString()
+                if (id.isNotBlank() && password.isNotBlank()) {
+                    btnLoginNext.setOnClickListener {
+                        viewModel.login(
+                            id,
+                            password,
+                        )
+                    }
+                }
+            }
+        }
     }
 }
