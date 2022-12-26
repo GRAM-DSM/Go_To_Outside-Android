@@ -9,5 +9,7 @@ class LoginUseCase @Inject constructor(
     private val repository: UserRepository,
 ) : BaseUseCase<LoginParameter, Unit>() {
 
-    override fun invoke(data: LoginParameter) = repository.login(data)
+    override suspend fun invoke(data: LoginParameter) {
+        repository.login(data)
+    }
 }
