@@ -3,16 +3,16 @@ package com.gram.presentation.view.login
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import com.gram.domain.entity.user.LoginEntity
+import com.gram.domain.entity.user.LoginEntity.Authority.*
 import com.gram.presentation.R
 import com.gram.presentation.base.BaseActivity
 import com.gram.presentation.databinding.ActivityLoginBinding
+import com.gram.presentation.util.StartActivityUtils
+import com.gram.presentation.view.student.StudentMainActivity
+import com.gram.presentation.view.teacher.TeacherMainActivity
 import com.gram.presentation.viewmodel.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(
@@ -39,6 +39,29 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
                 """.trimIndent()
             )
         }
+
+        viewModel.loginType.observe(
+            this,
+        ) {
+            moveToMainActivity(it)
+        }
+    }
+
+    private fun moveToMainActivity(authority: LoginEntity.Authority) {
+        when (authority) {
+            STUDENT -> {
+                StartActivityUtils.startActivity(
+                    this,
+                    StudentMainActivity::class.java,
+                )
+            }
+            TEACHER -> {
+                StartActivityUtils.startActivity(
+                    this,
+                    TeacherMainActivity::class.java,
+                )
+            }
+        }
     }
 
     override fun initView() {
@@ -47,13 +70,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
                 val id = includedLoginLabel.etLabelLoginId.text.toString()
                 val password = includedLoginLabel.etLabelLoginPassword.text.toString()
                 if (id.isNotBlank() && password.isNotBlank()) {
-                    btnLoginNext.setOnClickListener {
-                        viewModel.login(
-                            id,
-                            password,
-                        )
-                    }
+                    viewModel.login(
+                        id,
+                        password,
+                    )
                 }
+            }
+
+            includedLoginHeader.run {
+                tvHeaderPrimary.text = "GoToOutside"
+                tvHeaderSecondary.text = "로그인"
             }
         }
     }
