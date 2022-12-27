@@ -2,7 +2,7 @@ package com.gram.presentation.di
 
 import android.app.Application
 import com.gram.presentation.util.SharedPreferenceNames.DEFAULT_SHARED_PREFERENCES
-import com.gram.presentation.util.SharedPreferencesUtil
+import com.gram.presentation.util.sharedPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 //@HiltAndroidApp
@@ -12,7 +12,7 @@ class GoToOutsideApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        SharedPreferencesUtil.sharedPreferences = getSharedPreferences(
+        sharedPreferences = getSharedPreferences(
             DEFAULT_SHARED_PREFERENCES,
             MODE_PRIVATE,
         )
