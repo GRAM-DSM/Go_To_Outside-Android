@@ -10,6 +10,7 @@ import com.gram.domain.exception.CommonException
 import com.gram.domain.exception.CommonException.*
 import com.gram.domain.parameter.user.LoginParameter
 import com.gram.domain.usecase.user.LoginUseCase
+import com.gram.presentation.util.saveTokenInLocalDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,11 +24,16 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _eventFlow = MutableStateFlow<Event>(Event.Unauthorized)
-    val eventFlow: StateFlow<Event> = _eventFlow
+    val eventFlow: StateFlow<Event>
+        get() = _eventFlow
 
     private val _loginEntity = MutableLiveData<LoginEntity>()
     val loginEntity: LiveData<LoginEntity>
         get() = _loginEntity
+
+    private val _loginType = MutableLiveData<LoginEntity.Authority>()
+    val loginType: LiveData<LoginEntity.Authority>
+        get() = _loginType
 
     // Temporary login Function
     internal fun login(
@@ -44,12 +50,13 @@ class LoginViewModel @Inject constructor(
                 )
             }.onSuccess {
                 _loginEntity.postValue(it)
+                _loginType.postValue(it.authority)
+                saveTokenInLocalDataBase(it)
             }.onFailure {
                 Log.e("Login", "login: failure")
             }
         }
     }
-
 
     /* fun login(
         accountId: String,
