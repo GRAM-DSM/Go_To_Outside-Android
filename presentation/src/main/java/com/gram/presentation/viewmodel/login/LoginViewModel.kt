@@ -35,6 +35,10 @@ class LoginViewModel @Inject constructor(
     val loginType: LiveData<LoginEntity.Authority>
         get() = _loginType
 
+    private val _shouldShowProgressBar = MutableLiveData(true)
+    val shouldShowProgressBar: LiveData<Boolean>
+        get() = _shouldShowProgressBar
+
     // Temporary login Function
     internal fun login(
         accountId: String,
@@ -54,6 +58,8 @@ class LoginViewModel @Inject constructor(
                 saveTokenInLocalDataBase(it)
             }.onFailure {
                 Log.e("Login", "login: failure")
+            }.also {
+                _shouldShowProgressBar.postValue(false)
             }
         }
     }
