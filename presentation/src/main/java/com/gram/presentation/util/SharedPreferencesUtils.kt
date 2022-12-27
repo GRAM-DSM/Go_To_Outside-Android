@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import com.gram.domain.entity.user.LoginEntity
 import com.gram.presentation.util.SharedPreferenceKeys.ACCESS_TOKEN
 import com.gram.presentation.util.SharedPreferenceKeys.AUTHORITY
+import com.gram.presentation.util.SharedPreferenceKeys.IS_LOGGED_IN
+import com.gram.presentation.util.SharedPreferenceKeys.LOGGED_IN_AUTHORITY
 import com.gram.presentation.util.SharedPreferenceKeys.REFRESH_TOKEN
 
 object SharedPreferenceNames {
@@ -17,15 +19,43 @@ object SharedPreferenceKeys {
     const val REFRESH_TOKEN = "refresh_token"
 
     const val AUTHORITY = "authority"
+
+    const val IS_LOGGED_IN = "is_logged_in"
+    const val LOGGED_IN_AUTHORITY = "logged_in_authority"
 }
 
-object SharedPreferencesUtil {
+internal var sharedPreferences: SharedPreferences? = null
 
-    internal var sharedPreferences: SharedPreferences? = null
+internal val sharedPreferencesEditor by lazy {
+    requireNotNull(sharedPreferences)
+    sharedPreferences!!.edit()
+}
 
-    internal val sharedPreferencesEditor by lazy {
-        checkNotNull(sharedPreferences)
-        sharedPreferences!!.edit()
+internal fun setLoggedIn(authority: LoginEntity.Authority) {
+    sharedPreferencesEditor.run {
+        putBoolean(
+            IS_LOGGED_IN,
+            true,
+        )
+        putString(
+            LOGGED_IN_AUTHORITY,
+            authority.toString().also {
+                println(
+                    """
+                    authority : $it
+                """.trimIndent()
+                )
+            }
+        )
+    }
+}
+
+internal fun setLoggedOut() {
+    sharedPreferencesEditor.apply {
+        putBoolean(
+            IS_LOGGED_IN,
+            false,
+        )
     }
 }
 
@@ -33,7 +63,7 @@ internal fun saveTokenInLocalDataBase(
     loginEntity: LoginEntity,
 ) {
     with(loginEntity) {
-        SharedPreferencesUtil.sharedPreferencesEditor.apply {
+        sharedPreferencesEditor.apply {
             putString(
                 ACCESS_TOKEN,
                 access_token,
@@ -46,12 +76,13 @@ internal fun saveTokenInLocalDataBase(
                 AUTHORITY,
                 authority.toString(),
             )
-            print(
+            println(
                 """
-                saved tokens;
+                saved tokens {
                 access_token : $access_token
                 refresh_token : $refresh_token
-                authority : ${authority.toString()}
+                authority : $authority
+                }
             """.trimIndent()
             )
         }.apply()
