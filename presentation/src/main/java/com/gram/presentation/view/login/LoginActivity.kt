@@ -8,7 +8,9 @@ import com.gram.domain.entity.user.LoginEntity.Authority.*
 import com.gram.presentation.R
 import com.gram.presentation.base.BaseActivity
 import com.gram.presentation.databinding.ActivityLoginBinding
-import com.gram.presentation.util.StartActivityUtils
+import com.gram.presentation.util.*
+import com.gram.presentation.util.SharedPreferenceKeys.AUTHORITY
+import com.gram.presentation.util.SharedPreferenceKeys.IS_LOGGED_IN
 import com.gram.presentation.view.student.StudentMainActivity
 import com.gram.presentation.view.teacher.TeacherMainActivity
 import com.gram.presentation.viewmodel.login.LoginViewModel
@@ -23,8 +25,42 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkLoggedIn()
 
         observeEvents()
+    }
+
+    // 자동로그인 로직
+    private fun checkLoggedIn() {
+        sharedPreferences.run {
+            if ((this?.getBoolean(
+                    IS_LOGGED_IN,
+                    false,
+                ) == true).also {
+                    println(it)
+                }
+            ) {
+                moveToMainActivity(
+                    convertStringToAuthorityClass(
+                        this?.getString(
+                            AUTHORITY,
+                            "STUDENT",
+                        )!!
+                    )
+                )
+            }
+        }
+    }
+
+    private fun convertStringToAuthorityClass(string: String): LoginEntity.Authority {
+        return when (string) {
+            STUDENT.toString() -> {
+                STUDENT
+            }
+            else -> {
+                TEACHER
+            }
+        }
     }
 
     private fun observeEvents() {
@@ -48,20 +84,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     }
 
     private fun moveToMainActivity(authority: LoginEntity.Authority) {
-        when (authority) {
-            STUDENT -> {
-                StartActivityUtils.startActivity(
-                    this,
-                    StudentMainActivity::class.java,
-                )
-            }
-            TEACHER -> {
-                StartActivityUtils.startActivity(
-                    this,
-                    TeacherMainActivity::class.java,
-                )
-            }
-        }
+        startActivityFinishingCurrentActivityInvokingFunction(
+            this,
+            when (authority) {
+                STUDENT -> StudentMainActivity::class.java
+                TEACHER -> TeacherMainActivity::class.java
+            },
+        ) { setLoggedIn(authority) }
     }
 
     override fun initView() {
@@ -78,8 +107,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
             }
 
             includedLoginHeader.run {
-                tvHeaderPrimary.text = "GoToOutside"
-                tvHeaderSecondary.text = "로그인"
+                tvHeaderPrimary.text = getString(R.string.login_go_to_outside)
+                tvHeaderSecondary.text = getString(R.string.login)
             }
         }
     }
