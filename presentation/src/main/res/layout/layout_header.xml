@@ -14,11 +14,11 @@
         <TextView
             android:id="@+id/tv_header_primary"
             style="@style/TextViewHeaderPrimary"
-            android:text="Primary" />
+            tools:text="Primary" />
 
         <TextView
             android:id="@+id/tv_header_secondary"
             style="@style/TextViewHeaderSecondary"
-            android:text="Secondary" />
+            tools:text="Secondary" />
     </LinearLayout>
 </layout>

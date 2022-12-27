@@ -19,7 +19,7 @@
             <EditText
                 android:id="@+id/et_label_login_id"
                 style="@style/TextInputEditTextPrimary"
-                android:hint="아이디"
+                android:hint="@string/label_login_id"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 tools:ignore="LabelFor" />

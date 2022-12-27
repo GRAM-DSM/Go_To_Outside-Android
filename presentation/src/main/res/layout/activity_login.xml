@@ -40,7 +40,7 @@
             android:id="@+id/tv_login_register"
             style="@style/TextViewHintPrimary"
             android:layout_marginBottom="30dp"
-            android:text="계정이 없다면? 회원가입"
+            android:text="@string/login_if_no_account_go_to_register"
             app:layout_constraintBottom_toTopOf="@id/btn_login_next"
             app:layout_constraintEnd_toEndOf="@id/btn_login_next"
             app:layout_constraintStart_toStartOf="@id/btn_login_next" />
@@ -49,7 +49,7 @@
             android:id="@+id/btn_login_next"
             style="@style/ButtonPrimary"
             android:layout_marginBottom="60dp"
-            android:text="다음"
+            android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
