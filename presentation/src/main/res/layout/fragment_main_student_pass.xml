@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/declined"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewTitleSecondary"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/pass" />
+
+                    <TextView
+                        android:id="@+id/tv_main_student_pass_student_name"
+                        style="@style/TextViewBodyPrimary"
+                        tools:text="08:40 ~ 20:30" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewTitlePrimary"
+                        tools:text="정승훈" />
+
+                    <TextView
+                        android:id="@+id/tv_main_student_pass_student_number"
+                        style="@style/TextViewBodyPrimary"
+                        tools:text="1213" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/main_student_pass_status_image"
+                    android:scaleType="center"
+                    tools:src="@drawable/ic_main_declined" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    style="@style/TextViewHintSecondaryBold"
+                    android:layout_width="match_parent"
+                    android:text="@string/main_student_pass_reason" />
+
+                <TextView
+                    android:id="@+id/tv_main_student_pass_reason"
+                    style="@style/TextViewBodyPrimary"
+                    android:layout_width="match_parent"
+                    android:maxLines="4"
+                    tools:text="볼따구에 여드름이 나서" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
