@@ -14,18 +14,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".view.student.StudentMainActivity"
-            android:exported="true">
-
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".view.teacher.TeacherMainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true">
@@ -35,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.register.RegisterActivity"
+            android:exported="false" />
     </application>
-
 </manifest>
