@@ -11,4 +11,6 @@
     <string name="main_student_pass_reason">사유</string>
     <string name="student">학생</string>
     <string name="teacher">교사</string>
+    <string name="register_register">회원가입</string>
+    <string name="register_who_are_you_what">누구신가요?</string>
 </resources>
