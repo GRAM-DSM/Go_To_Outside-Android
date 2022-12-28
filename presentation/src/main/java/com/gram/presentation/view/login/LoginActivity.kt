@@ -96,13 +96,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     override fun initView() {
         with(binding) {
             btnLoginNext.setOnClickListener {
-                val id = includedLoginLabel.etLabelLoginId.text.toString()
-                val password = includedLoginLabel.etLabelLoginPassword.text.toString()
-                if (id.isNotBlank() && password.isNotBlank()) {
-                    viewModel.login(
-                        id,
-                        password,
-                    )
+                Pair(
+                    includedLoginLabel.etLabelLoginId.text.toString(),
+                    includedLoginLabel.etLabelLoginPassword.text.toString(),
+                ).run {
+                    if (first.isNotBlank() && second.isNotBlank()) {
+                        viewModel.login(
+                            first,
+                            second,
+                        )
+                    }
                 }
             }
 
