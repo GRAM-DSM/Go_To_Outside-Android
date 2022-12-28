@@ -39,13 +39,7 @@ internal fun setLoggedIn(authority: LoginEntity.Authority) {
         )
         putString(
             LOGGED_IN_AUTHORITY,
-            authority.toString().also {
-                println(
-                    """
-                    authority : $it
-                """.trimIndent()
-                )
-            }
+            authority.toString(),
         )
     }
 }
@@ -78,10 +72,11 @@ internal fun saveTokenInLocalDataBase(
             )
             println(
                 """
-                saved tokens {
-                access_token : $access_token
-                refresh_token : $refresh_token
-                authority : $authority
+                saved tokens
+                {
+                    "access_token" : "$access_token"
+                    "refresh_token" : "$refresh_token"
+                    "authority" : "$authority"
                 }
             """.trimIndent()
             )
