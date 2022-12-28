@@ -11,6 +11,7 @@ import com.gram.presentation.databinding.ActivityLoginBinding
 import com.gram.presentation.util.*
 import com.gram.presentation.util.SharedPreferenceKeys.AUTHORITY
 import com.gram.presentation.util.SharedPreferenceKeys.IS_LOGGED_IN
+import com.gram.presentation.view.register.RegisterActivity
 import com.gram.presentation.view.student.StudentMainActivity
 import com.gram.presentation.view.teacher.TeacherMainActivity
 import com.gram.presentation.viewmodel.login.LoginViewModel
@@ -96,19 +97,29 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(
     override fun initView() {
         with(binding) {
             btnLoginNext.setOnClickListener {
-                val id = includedLoginLabel.etLabelLoginId.text.toString()
-                val password = includedLoginLabel.etLabelLoginPassword.text.toString()
-                if (id.isNotBlank() && password.isNotBlank()) {
-                    viewModel.login(
-                        id,
-                        password,
-                    )
+                Pair(
+                    includedLoginLabel.etLabelLoginId.text.toString(),
+                    includedLoginLabel.etLabelLoginPassword.text.toString(),
+                ).run {
+                    if (first.isNotBlank() && second.isNotBlank()) {
+                        viewModel.login(
+                            first,
+                            second,
+                        )
+                    }
                 }
             }
 
             includedLoginHeader.run {
                 tvHeaderPrimary.text = getString(R.string.login_go_to_outside)
                 tvHeaderSecondary.text = getString(R.string.login)
+            }
+
+            tvLoginRegister.setOnClickListener {
+                startActivity(
+                    this@LoginActivity,
+                    RegisterActivity::class.java,
+                )
             }
         }
     }
