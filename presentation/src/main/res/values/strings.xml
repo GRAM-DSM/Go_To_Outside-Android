@@ -9,4 +9,6 @@
     <string name="pass">외출증</string>
     <string name="main_student_pass_status_image">The pass status image</string>
     <string name="main_student_pass_reason">사유</string>
+    <string name="student">학생</string>
+    <string name="teacher">교사</string>
 </resources>
